@@ -240,6 +240,8 @@ Requires:         python%{python3_pkgversion}-lib389
 The lib389 CI tests that can be run against the Directory Server.
 
 %prep
+echo SBIN %{_sbindir}
+echo SITE %{python3_sitelib}
 %setup -q -n %{name}-%{version}%{?prerel}
 
 cp %{SOURCE2} README.devel
@@ -533,7 +535,7 @@ fi
 %{_mandir}/man1/ldap-agent.1.gz
 %{_unitdir}/%{pkgname}-snmp.service
 
-%if 0%{?rhel} >= 8 || 0%{?fedora}
+%if 0%{?rhel} >= 7 || 0%{?fedora}
 %files -n python%{python3_pkgversion}-lib389
 %defattr(-,root,root,-)
 %doc LICENSE LICENSE.GPLv3+
@@ -544,7 +546,7 @@ fi
 %{python3_sitelib}/lib389*
 %endif
 
-%if 0%{?rhel} >= 8 || 0%{?fedora}
+%if 0%{?rhel} >= 7 || 0%{?fedora}
 %files -n python%{python3_pkgversion}-%{srcname}-tests
 %defattr(-,root,root,-)
 %doc LICENSE LICENSE.GPLv3+
